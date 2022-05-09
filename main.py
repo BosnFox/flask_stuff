@@ -72,10 +72,10 @@ def listing(liste):
                   </body>
                 </html>"""
 
-@app.route('/answer')
+
 @app.route('/auto_answer')
 def answer():
-    return render_template('auto_answer.html', title='Колонизация Марса', n_dict = {
+    return render_template('auto_answer.html', title='Колонизация Марса', n_dict={
         'name': 'Name',
         'surname': 'SûrName',
         'education': 'Nope',
@@ -83,6 +83,14 @@ def answer():
         'sex': 'O T H E R',
         'ready': 'True'
     })
+
+
+@app.route("/distribution")
+def answer():
+    return render_template('distribution.html', title="Распределение",
+                           user_list=[{"name": "Name", "surname": "Surname"}, {"name": "Name", "surname": "Surname"},
+                                      {"name": "Name", "surname": "Surname"}, {"name": "Name", "surname": "Surname"}])
+
 
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
