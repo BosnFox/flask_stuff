@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, url_for
+from random import choice
 
 app = Flask(__name__)
 
@@ -90,6 +91,13 @@ def answer():
     return render_template('distribution.html', title="Распределение",
                            user_list=[{"name": "Name", "surname": "Surname"}, {"name": "Name", "surname": "Surname"},
                                       {"name": "Name", "surname": "Surname"}, {"name": "Name", "surname": "Surname"}])
+
+
+@app.route("/table/<gender>/<int:age>")
+def table(gender, age):
+    return render_template('table.html', title="Каюта", color= "#03254c" if gender == 'male' and age < 21 else "#1167b1"
+                           if gender == 'male' and age >= 21 else "#fc6600" if gender == 'female' and age < 21  else "#ff7417",
+                           source=url_for('static', filename=f"img/dude{choice([1, 2])}.png"))
 
 
 if __name__ == '__main__':
