@@ -72,6 +72,17 @@ def listing(liste):
                   </body>
                 </html>"""
 
+@app.route('/answer')
+@app.route('/auto_answer')
+def answer():
+    return render_template('auto_answer.html', title='Колонизация Марса', n_dict = {
+        'name': 'Name',
+        'surname': 'SûrName',
+        'education': 'Nope',
+        'profession': 'Nope',
+        'sex': 'O T H E R',
+        'ready': 'True'
+    })
 
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
